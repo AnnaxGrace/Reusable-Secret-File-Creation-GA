@@ -43,9 +43,10 @@ jobs:
 
     - name: 'Create Terraform Secrets tfvars File'
       run: |
+        TERRAFORM_SECRET_VARIABLES=$(env | grep -e '^TF_VAR_')
         touch secrets.tfvars
         cat > secrets.tfvars << EOF
-        app = "${{ secrets.APP_NAME }}"
+        $TERRAFORM_SECRET_VARIABLES
         EOF
       working-directory: terraform
 
