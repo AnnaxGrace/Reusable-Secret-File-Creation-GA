@@ -60,6 +60,7 @@ jobs:
 
   use_reusable_tf:
     uses: AnnaxGrace/Reusable-TF-WF/.github/workflows/main.yaml@main
+    needs: work_locally
 
     # - name: 'Plan Run'
     #   run: |
