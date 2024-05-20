@@ -33,11 +33,15 @@ jobs:
         azcliversion: latest
         inlineScript: |
           az account show
+    
+    - name: List env
+      run: |
+        env
 
     - name: 'Create Terraform Secrets tfvars File'
       run: |
-        touch ~/terraform/secrets.tfvars
-        cat > ~/terraform/secrets.tfvars << EOF
+        touch secrets.tfvars
+        cat > secrets.tfvars << EOF
         app = "${{ secrets.APP_NAME }}"
         EOF
       working-directory: terraform
