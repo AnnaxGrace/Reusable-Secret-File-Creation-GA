@@ -2,8 +2,8 @@ name: Terraform Plan
 
 on: workflow_dispatch
 
-env:
-  TF_VAR_app: ${{ secrets.APP_NAME }}
+# env:
+#   TF_VAR_app: ${{ secrets.APP_NAME }}
 
 permissions:
     id-token: write
@@ -13,6 +13,8 @@ jobs:
   work_locally: 
     runs-on: ubuntu-latest
     name: Terraform Apply Cycle
+    env:
+      TF_VAR_app: ${{ secrets.APP_NAME }}
 
     steps:
 
@@ -36,7 +38,7 @@ jobs:
     
     - name: List env
       run: |
-        env
+        ${{ jobs.work_locally.env}}
 
     - name: 'Create Terraform Secrets tfvars File'
       run: |
@@ -46,10 +48,10 @@ jobs:
         EOF
       working-directory: terraform
 
-    - run: |
+    - name: 'Plan Run'
+      run: |
         terraform init
         terraform plan -auto-approve -input=false -var-file=./secrets.tfvars
-        # terraform plan -auto-approve -input=false
       working-directory: terraform
 
 
