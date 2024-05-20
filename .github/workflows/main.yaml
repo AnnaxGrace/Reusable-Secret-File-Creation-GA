@@ -41,14 +41,14 @@ jobs:
         TERRAFORM_VARIABLES=$(env | grep -e '^TF_VAR_')
         echo $TERRAFORM_VARIABLES
 
-    - name: 'Create Terraform Secrets tfvars File'
-      run: |
-        TERRAFORM_SECRET_VARIABLES=$(env | grep -e '^TF_VAR_')
-        touch secrets.tfvars
-        cat > secrets.tfvars << EOF
-        $TERRAFORM_SECRET_VARIABLES
-        EOF
-      working-directory: terraform
+    # - name: 'Create Terraform Secrets tfvars File'
+    #   run: |
+    #     TERRAFORM_SECRET_VARIABLES=$(env | grep -e '^TF_VAR_')
+    #     touch secrets.tfvars
+    #     cat > secrets.tfvars << EOF
+    #     $TERRAFORM_SECRET_VARIABLES
+    #     EOF
+    #   working-directory: terraform
 
     - name: 'Plan Run'
       run: |
