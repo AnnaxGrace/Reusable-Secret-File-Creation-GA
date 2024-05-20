@@ -50,6 +50,15 @@ jobs:
     #     EOF
     #   working-directory: terraform
 
+    - name: 'Create empty secrets file if doesn't exist'
+      run: |
+        if ! test -f secrets.tfvars; then
+          echo "secrets.tfvars does not exist. Creating..."
+          touch secrets.tfvars
+        fi
+      working-directory: terraform
+
+
     - name: 'Plan Run'
       run: |
         terraform init
