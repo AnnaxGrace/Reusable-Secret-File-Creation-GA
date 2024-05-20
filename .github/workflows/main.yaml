@@ -66,6 +66,11 @@ jobs:
   use_reusable_tf:
     uses: AnnaxGrace/Reusable-TF-WF/.github/workflows/main.yaml@main
     needs: work_locally
+    secrets:
+      TF_vars: |
+        TF_VAR_app=${{ secrets.APP_NAME }}
+        TF_VAR_test="here"
+
 
     # - name: 'Plan Run'
     #   run: |
