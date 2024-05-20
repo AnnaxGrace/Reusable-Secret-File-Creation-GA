@@ -55,6 +55,11 @@ jobs:
         terraform plan -input=false -var-file=./secrets.tfvars
       working-directory: terraform
 
+    - name: 'Apply Run'
+      run: |
+        terraform apply -auto-approve -input=false -var-file=./secrets.tfvars
+      working-directory: terraform
+
 
 
 
