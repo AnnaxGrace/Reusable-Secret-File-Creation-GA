@@ -50,24 +50,27 @@ jobs:
     #     EOF
     #   working-directory: terraform
 
-    - name: Create empty secrets file if doesn't exist
-      run: |
-        if ! test -f secrets.tfvars; then
-          echo "secrets.tfvars does not exist. Creating..."
-          touch secrets.tfvars
-        fi
-      working-directory: terraform
+    # - name: Create empty secrets file if doesn't exist
+    #   run: |
+    #     if ! test -f secrets.tfvars; then
+    #       echo "secrets.tfvars does not exist. Creating..."
+    #       touch secrets.tfvars
+    #     fi
+    #   working-directory: terraform
 
-    - name: 'Plan Run'
-      run: |
-        terraform init
-        terraform plan -input=false -var-file=./secrets.tfvars
-      working-directory: terraform
+  use_reusable_tf:
+    uses: AnnaxGrace/Reusable-TF-WF/.github/workflows/main.yaml@main
 
-    - name: 'Apply Run'
-      run: |
-        terraform apply -auto-approve -input=false -var-file=./secrets.tfvars
-      working-directory: terraform
+    # - name: 'Plan Run'
+    #   run: |
+    #     terraform init
+    #     terraform plan -input=false -var-file=./secrets.tfvars
+    #   working-directory: terraform
+
+    # - name: 'Apply Run'
+    #   run: |
+    #     terraform apply -auto-approve -input=false -var-file=./secrets.tfvars
+    #   working-directory: terraform
 
 
 
