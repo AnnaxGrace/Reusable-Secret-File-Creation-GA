@@ -52,7 +52,7 @@ jobs:
     - name: 'Plan Run'
       run: |
         terraform init
-        terraform plan -auto-approve -input=false -var-file=./secrets.tfvars
+        terraform plan -input=false -var-file=./secrets.tfvars
       working-directory: terraform
 
 
