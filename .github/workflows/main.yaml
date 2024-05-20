@@ -50,6 +50,11 @@ jobs:
         EOF
       working-directory: terraform
 
+    - uses: actions/upload-artifact@v4
+      with:
+        name: secrets
+        path: terraform/secrets.tfvars
+
     # - name: Create empty secrets file if doesn't exist
     #   run: |
     #     if ! test -f secrets.tfvars; then
