@@ -5,6 +5,10 @@ on: workflow_dispatch
 env:
   TF_VAR_app: ${{ secrets.APP_NAME }}
 
+permissions:
+    id-token: write
+    contents: read
+
 jobs: 
   work_locally: 
     runs-on: ubuntu-latest
