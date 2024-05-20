@@ -34,10 +34,19 @@ jobs:
         inlineScript: |
           az account show
 
+    - name: 'Create Terraform Secrets tfvars File'
+      run: |
+        # touch ~/terraform/secrets.tfvars
+        cat > ~/terraform/secrets.tfvars << EOF
+        app = "${{ secrets.APP_NAME }}"
+        EOF
+      working-directory: terraform
+
     - run: |
         terraform init
-        # terraform plan -auto-approve -input=false -var-file=./secrets.tfvars
-        terraform plan -auto-approve -input=false
+        terraform plan -auto-approve -input=false -var-file=./secrets.tfvars
+        # terraform plan -auto-approve -input=false
+      working-directory: terraform
 
 
 
