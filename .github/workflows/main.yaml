@@ -38,7 +38,8 @@ jobs:
     
     - name: List env
       run: |
-        ${{ jobs.work_locally.env}}
+        TERRAFORM_VARIABLES=$(env | grep -e '^TF_VAR_')
+        echo $TERRAFORM_VARIABLES
 
     - name: 'Create Terraform Secrets tfvars File'
       run: |
