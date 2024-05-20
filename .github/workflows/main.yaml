@@ -36,7 +36,7 @@ jobs:
 
     - name: 'Create Terraform Secrets tfvars File'
       run: |
-        # touch ~/terraform/secrets.tfvars
+        touch ~/terraform/secrets.tfvars
         cat > ~/terraform/secrets.tfvars << EOF
         app = "${{ secrets.APP_NAME }}"
         EOF
