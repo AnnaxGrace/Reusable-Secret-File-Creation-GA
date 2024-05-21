@@ -1,3 +1,3 @@
-variable "app" {
-  type = string
-}
+# variable "app" {
+#   type = string
+# }
