@@ -68,7 +68,7 @@ jobs:
     needs: work_locally
     secrets:
       TF_vars: |
-        app=${{ secrets.APP_NAME }}
+        app="${{ secrets.APP_NAME }}"
         test="here"
 
 
