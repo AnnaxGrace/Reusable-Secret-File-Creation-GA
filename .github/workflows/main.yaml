@@ -1,6 +1,12 @@
 name: Terraform Plan
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    test:
+      type: choice
+      options:
+      - here
+      - there
 
 # env:
 #   TF_VAR_app: ${{ secrets.APP_NAME }}
@@ -11,6 +17,7 @@ permissions:
 
 jobs: 
   work_locally: 
+    if: github.event.inputs.test == 'here'
     runs-on: ubuntu-latest
     name: Terraform Apply Cycle
     env:
