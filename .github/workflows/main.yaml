@@ -25,9 +25,7 @@ jobs:
     
     - name: List env
       run: |
-        TERRAFORM_VARIABLES=$(env | grep -e '^TF_VAR_')
-        echo $TERRAFORM_VARIABLES
-
+        echo "🐸"
     # - name: 'Create Terraform Secrets tfvars File'
     #   run: |
     #     TERRAFORM_SECRET_VARIABLES=$(env | grep -e '^TF_VAR_')
@@ -58,7 +56,7 @@ jobs:
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       TF_vars: |
-      #   app="${{ secrets.APP_NAME }}"
+        app="${{ secrets.APP_NAME }}"
 
 
 
