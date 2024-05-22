@@ -2,11 +2,13 @@ name: Terraform Plan
 
 on: 
   workflow_dispatch:
-    test:
-      type: choice
-      options:
-      - here
-      - there
+    inputs:
+      test:
+        description: 'whee'
+        type: choice
+        options:
+        - here
+        - there
 
 # env:
 #   TF_VAR_app: ${{ secrets.APP_NAME }}
