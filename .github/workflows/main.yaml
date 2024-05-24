@@ -66,6 +66,8 @@ jobs:
       AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       TF_vars: |
         app="${{ secrets.APP_NAME }}"
+        here="test"
+        there="why"
 
 
 
