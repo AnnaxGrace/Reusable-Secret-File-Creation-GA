@@ -67,7 +67,7 @@ jobs:
       # TF_vars: |
       #   TF_VAR_app="${{ secrets.APP_NAME }}"
       #   TF_VAR_location="Central US"
-      TF_vars: "-var='app=${{ secrets.APP_NAME }} -var='location=Central US'" 
+      TF_vars: "-var='app=${{ secrets.APP_NAME }}' -var='location=Central US'" 
 
 
 
