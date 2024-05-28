@@ -1,7 +1,7 @@
-variable "app" {
-  type = string
-}
+# variable "app" {
+#   type = string
+# }
 
-variable "location" {
-  type = string
-}
+# variable "location" {
+#   type = string
+# }
