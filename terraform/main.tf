@@ -13,7 +13,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "use_secret" {
-  name     = var.app
-  # name = "whanderfaltest"
-  location = var.location
+  # name     = var.app
+  name = "whanderfaltest"
+  # location = var.location
+  location = "Central US"
 }
