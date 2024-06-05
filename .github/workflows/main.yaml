@@ -10,9 +10,6 @@ on:
         - here
         - there
 
-# env:
-#   TF_VAR_app: ${{ secrets.APP_NAME }}
-
 permissions:
     id-token: write
     contents: read
@@ -21,9 +18,6 @@ jobs:
   work_locally: 
     if: github.event.inputs.test == 'here'
     runs-on: ubuntu-latest
-    name: Terraform Apply Cycle
-    # env:
-    #   TF_VAR_app: ${{ secrets.APP_NAME }}
 
     steps:
 
@@ -32,31 +26,6 @@ jobs:
     - uses: hashicorp/setup-terraform@v3
 
     
-    - name: List env
-      run: |
-        echo "🐸"
-    # - name: 'Create Terraform Secrets tfvars File'
-    #   run: |
-    #     TERRAFORM_SECRET_VARIABLES=$(env | grep -e '^TF_VAR_')
-    #     touch secrets.tfvars
-    #     cat > secrets.tfvars << EOF
-    #     $TERRAFORM_SECRET_VARIABLES
-    #     EOF
-    #   working-directory: terraform
-
-    # - uses: actions/upload-artifact@v4
-    #   with:
-    #     name: secrets
-    #     path: terraform/secrets.tfvars
-
-    # - name: Create empty secrets file if doesn't exist
-    #   run: |
-    #     if ! test -f secrets.tfvars; then
-    #       echo "secrets.tfvars does not exist. Creating..."
-    #       touch secrets.tfvars
-    #     fi
-    #   working-directory: terraform
-
   use_reusable_tf:
     uses: AnnaxGrace/Reusable-TF-WF/.github/workflows/main.yaml@main
     needs: work_locally
@@ -64,27 +33,12 @@ jobs:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID}}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      # TF_vars: |
-      #   TF_VAR_app=${{ secrets.APP_NAME }}
-      #   TF_VAR_location="Central US"
       # TF_vars: "-var='app=${{ secrets.APP_NAME }}' -var='location=Central US'" 
 
 
-
-
-    # - name: 'Plan Run'
-    #   run: |
-    #     terraform init
-    #     terraform plan -input=false -var-file=./secrets.tfvars
-    #   working-directory: terraform
-
-    # - name: 'Apply Run'
-    #   run: |
-    #     terraform apply -auto-approve -input=false -var-file=./secrets.tfvars
-    #   working-directory: terraform
-
   test-output:
     runs-on: ubuntu-latest
+    needs: [work_locally, use_reusable_tf]
     name: Get output
 
     steps:
