@@ -8,4 +8,5 @@ output "test_output_dynamic" {
 
 output "test_output_dynamic2" {
     value = azurerm_resource_group.use_secret.id
+    sensitive = true
 }
