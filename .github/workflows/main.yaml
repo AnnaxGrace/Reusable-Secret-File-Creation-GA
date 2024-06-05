@@ -83,6 +83,18 @@ jobs:
     #     terraform apply -auto-approve -input=false -var-file=./secrets.tfvars
     #   working-directory: terraform
 
+  test-output:
+    runs-on: ubuntu-latest
+    name: Get output
+
+    steps:
+
+    - name: 'whee'
+      run: |
+        echo ${{ needs.use_reusable_tf.outputs.OUTPUTS_STRING }}
+
+
+
 
 
 
