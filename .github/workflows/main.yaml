@@ -45,7 +45,9 @@ jobs:
 
     - name: 'whee'
       run: |
-        echo ${{ needs.use_reusable_tf.outputs.OUTPUTS_STRING }}
+        string_place=${{ needs.use_reusable_tf.outputs.OUTPUTS_STRING }}
+        test=$(jq -r '.[].test_output_dynamic | .value' $string_place)
+        echo $test
 
 
 
