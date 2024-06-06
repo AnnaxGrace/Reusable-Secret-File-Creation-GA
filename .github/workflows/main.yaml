@@ -45,8 +45,13 @@ jobs:
 
     - name: 'whee'
       run: |
-        string_place=${{ needs.use_reusable_tf.outputs.OUTPUTS_STRING }}
-        test=$(jq -r '.[].test_output_dynamic | .value' $string_place)
+        string_place='${{ needs.use_reusable_tf.outputs.OUTPUTS_STRING }}'
+        # test=$(jq -r '.[].test_output_dynamic | .value' $string_place)
+        # echo $string_place | jq -r ".[].test_output_dynamic | .value"
+        # string_place='[{"test_output_dynamic":{"sensitive":false,"type":"string","value":"whanderfaltest"},"test_output_dynamic2":{"sensitive":false,"type":"string","value":"whanderfaltest"}}]'
+        # echo '[{"test_output_dynamic":{"sensitive":false,"type":"string","value":"whanderfaltest"},"test_output_dynamic2":{"sensitive":false,"type":"string","value":"whanderfaltest"}}]' | jq -r ".[].test_output_dynamic | .value"
+        test=$(echo $string_place | jq -r ".[].test_output_dynamic | .value")
+        # test=$(jq -r '.[].test_output_dynamic | .value' <<< "$string_place")
         echo $test
 
 
